@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: campus-team-platform
+  
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/campus_team?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 3000ms
+  
+  # 邮件配置（开发环境暂不需要）
+  # mail:
+  #   host: smtp.qq.com
+  #   port: 587
+  #   username: your_email@qq.com
+  #   password: your_auth_code
+  #   properties:
+  #     mail:
+  #       smtp:
+  #         auth: true
+  #         starttls:
+  #           enable: true
+  #           required: true
+
+server:
+  port: 8080
+
+# JWT配置
+jwt:
+  secret: campus-team-platform-secret-key-2024-very-long-secret
+  expiration: 604800000  # 7天（毫秒）
+
+# 邮箱白名单
+email:
+  whitelist: "*.edu.cn"
+  code-expiration: 300  # 验证码有效期5分钟
+
+# 文件上传配置
+file:
+  upload:
+    path: ./uploads  # 文件上传路径
+    url-prefix: http://localhost:8080/uploads  # 文件访问URL前缀
+
+# Knife4j配置
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
